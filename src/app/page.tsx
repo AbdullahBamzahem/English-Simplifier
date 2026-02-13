@@ -15,7 +15,7 @@ export default function Home() {
                         <span className="gradient-text">English</span>
                     </h2>
                     <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
-                        Paste complex text and get a clear, concise version instantly.
+                        Paste complex text and get a corrected, clear, concise version instantly.
                         <br className="hidden sm:inline" />{" "}
                         Perfect for job applications, travel, and daily communication.
                     </p>

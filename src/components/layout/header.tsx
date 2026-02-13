@@ -1,30 +1,19 @@
+import LogoIcon from "@/components/logo-icon";
+
 export default function Header() {
     return (
         <header className="w-full border-b border-border/50 backdrop-blur-sm bg-surface/30">
             <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    {/* Logo icon */}
+                    {/* Logo icon — same mark as favicon & apple-icon */}
                     <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-accent to-cyan-500 flex items-center justify-center shadow-lg shadow-accent/20">
-                        <svg
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="white"
-                            strokeWidth="2.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        >
-                            <path d="M4 7V4h16v3" />
-                            <path d="M9 20h6" />
-                            <path d="M12 4v16" />
-                        </svg>
+                        <LogoIcon size={18} />
                     </div>
-                    <div>
+                    {/* <div>
                         <h1 className="text-lg font-semibold tracking-tight text-text-primary">
-                            English<span className="gradient-text"> Simplifier</span>
+                            Translate to Simple<span className="gradient-text"> English</span>
                         </h1>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* Status badge */}
@@ -36,3 +25,4 @@ export default function Header() {
         </header>
     );
 }
+

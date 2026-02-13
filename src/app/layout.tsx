@@ -9,23 +9,23 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-    title: "Translate to Simple English — Clear, Concise, Confident",
+    title: "Translate to Simple English — corrected, clear, Concise, Confident",
     description:
         "AI-powered tool that simplifies complex English text. Perfect for job applicants, travelers, and non-native speakers. Powered by Gemini.",
     keywords: [
-        "english simplifier",
+        "Translate to Simple English",
         "text simplifier",
         "simplify english",
         "plain language",
         "CEFR",
         "language tool",
     ],
-    authors: [{ name: "English Simplifier" }],
+    authors: [{ name: "Translate to Simple English" }],
     robots: "index, follow",
     openGraph: {
-        title: "English Simplifier — Clear, Concise, Confident",
+        title: "Translate to Simple English — corrected, clear, Concise, Confident",
         description:
-            "Simplify complex English into clear, everyday language. Choose your level: Essential, Daily, or Professional.",
+            "Simplify complex English into corrected, clear, everyday language. Choose your level: Essential, Daily, or Professional.",
         type: "website",
     },
 };
