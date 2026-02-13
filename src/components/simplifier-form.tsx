@@ -90,75 +90,81 @@ export default function SimplifierForm() {
     }
 
     return (
-        <div className="w-full space-y-6">
-            <form onSubmit={handleSubmit} className="space-y-5">
-                {/* ── Mode Selector ──────────────────────────── */}
-                <div className="space-y-2.5">
-                    <label className="block text-sm font-medium text-text-secondary">
-                        Simplification Level
-                    </label>
-                    <div className="flex flex-wrap gap-2">
-                        {MODES.map((m) => (
-                            <button
-                                key={m.value}
-                                type="button"
-                                onClick={() => setMode(m.value)}
-                                className={`
-                  group relative px-4 py-2.5 rounded-xl text-sm font-medium
-                  transition-all duration-200 cursor-pointer
-                  ${mode === m.value
-                                        ? "bg-accent/15 text-accent border border-accent/40 shadow-lg shadow-accent/10"
-                                        : "bg-surface-light/50 text-text-secondary border border-border hover:border-border-light hover:text-text-primary"
-                                    }
-                `}
+        <div className="w-full space-y-5">
+            {/* ── Mode Selector ──────────────────────────────── */}
+            <div className="space-y-2.5">
+                <label className="block text-sm font-medium text-text-secondary">
+                    Simplification Level
+                </label>
+                <div className="flex flex-wrap gap-2">
+                    {MODES.map((m) => (
+                        <button
+                            key={m.value}
+                            type="button"
+                            onClick={() => setMode(m.value)}
+                            className={`
+                                group relative px-4 py-2.5 rounded-xl text-sm font-medium
+                                transition-all duration-200 cursor-pointer
+                                ${mode === m.value
+                                    ? "bg-accent/15 text-accent border border-accent/40 shadow-lg shadow-accent/10"
+                                    : "bg-surface-light/50 text-text-secondary border border-border hover:border-border-light hover:text-text-primary"
+                                }
+                            `}
+                        >
+                            <span className="relative z-10">{m.label}</span>
+                            {mode === m.value && (
+                                <div className="absolute inset-0 rounded-xl bg-accent/5 animate-pulse-glow" />
+                            )}
+                        </button>
+                    ))}
+                </div>
+                <p className="text-xs text-text-muted">
+                    {MODES.find((m) => m.value === mode)?.description}
+                </p>
+            </div>
+
+            {/* ── Side-by-Side Panels ────────────────────────── */}
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    {/* ── LEFT: Input Panel ───────────────────── */}
+                    <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                            <label
+                                htmlFor="input-text"
+                                className="block text-sm font-medium text-text-secondary"
                             >
-                                <span className="relative z-10">{m.label}</span>
-                                {mode === m.value && (
-                                    <div className="absolute inset-0 rounded-xl bg-accent/5 animate-pulse-glow" />
-                                )}
-                            </button>
-                        ))}
+                                Your Text
+                            </label>
+                            <span
+                                className={`text-xs tabular-nums ${isOverLimit ? "text-error font-medium" : "text-text-muted"
+                                    }`}
+                            >
+                                {charCount.toLocaleString()} / {MAX_INPUT_LENGTH.toLocaleString()}
+                            </span>
+                        </div>
+                        <textarea
+                            id="input-text"
+                            name="text"
+                            value={text}
+                            onChange={(e) => setText(e.target.value)}
+                            placeholder="Paste or type complex English text here..."
+                            rows={10}
+                            className={`
+                                w-full px-4 py-3 rounded-xl resize-none
+                                bg-surface-light/60 border text-text-primary
+                                placeholder:text-text-muted/60
+                                transition-all duration-200
+                                text-[15px] leading-relaxed min-h-[240px]
+                                ${isOverLimit ? "border-error/60 focus:border-error" : "border-border hover:border-border-light"}
+                            `}
+                        />
                     </div>
-                    <p className="text-xs text-text-muted">
-                        {MODES.find((m) => m.value === mode)?.description}
-                    </p>
+
+                    {/* ── RIGHT: Output Panel ────────────────── */}
+                    <StreamingResult output={output} isStreaming={isStreaming} />
                 </div>
 
-                {/* ── Text Input ─────────────────────────────── */}
-                <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                        <label
-                            htmlFor="input-text"
-                            className="block text-sm font-medium text-text-secondary"
-                        >
-                            Your Text
-                        </label>
-                        <span
-                            className={`text-xs tabular-nums ${isOverLimit ? "text-error font-medium" : "text-text-muted"
-                                }`}
-                        >
-                            {charCount.toLocaleString()} / {MAX_INPUT_LENGTH.toLocaleString()}
-                        </span>
-                    </div>
-                    <textarea
-                        id="input-text"
-                        name="text"
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                        placeholder="Paste or type complex English text here..."
-                        rows={6}
-                        className={`
-              w-full px-4 py-3 rounded-xl resize-y
-              bg-surface-light/60 border text-text-primary
-              placeholder:text-text-muted/60
-              transition-all duration-200
-              text-[15px] leading-relaxed
-              ${isOverLimit ? "border-error/60 focus:border-error" : "border-border hover:border-border-light"}
-            `}
-                    />
-                </div>
-
-                {/* ── Error Message ──────────────────────────── */}
+                {/* ── Error Message ──────────────────────────────── */}
                 {error && (
                     <div className="flex items-start gap-3 px-4 py-3 rounded-xl bg-error-bg border border-error/20 animate-fade-in">
                         <svg
@@ -176,18 +182,18 @@ export default function SimplifierForm() {
                     </div>
                 )}
 
-                {/* ── Submit Button ──────────────────────────── */}
+                {/* ── Submit Button ──────────────────────────────── */}
                 <button
                     type="submit"
                     disabled={!canSubmit}
                     className={`
-            w-full py-3.5 rounded-xl text-sm font-semibold
-            transition-all duration-200 cursor-pointer
-            ${canSubmit
+                        w-full py-3.5 rounded-xl text-sm font-semibold
+                        transition-all duration-200 cursor-pointer
+                        ${canSubmit
                             ? "bg-gradient-to-r from-accent to-cyan-500 text-white shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/30 hover:scale-[1.01] active:scale-[0.99]"
                             : "bg-surface-light text-text-muted cursor-not-allowed"
                         }
-          `}
+                    `}
                 >
                     {isStreaming ? (
                         <span className="flex items-center justify-center gap-2">
@@ -217,7 +223,7 @@ export default function SimplifierForm() {
                     )}
                 </button>
 
-                {/* ── Rate Limit Info ────────────────────────── */}
+                {/* ── Rate Limit Info ────────────────────────────── */}
                 {remaining && (
                     <p className="text-xs text-text-muted text-center tabular-nums">
                         {remaining.minute} left this minute &middot;{" "}
@@ -225,9 +231,6 @@ export default function SimplifierForm() {
                     </p>
                 )}
             </form>
-
-            {/* ── Streaming Result ─────────────────────────── */}
-            <StreamingResult output={output} isStreaming={isStreaming} />
         </div>
     );
 }

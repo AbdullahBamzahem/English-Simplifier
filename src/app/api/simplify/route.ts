@@ -1,4 +1,4 @@
-import { headers } from "next/headers";
+import { headers as getHeaders } from "next/headers";
 import { simplifyText } from "@/lib/ai/provider";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { validateInput, validateMode } from "@/lib/validation";
@@ -8,7 +8,7 @@ import type { SimplificationMode } from "@/lib/ai/prompts";
  * Extract client IP from request headers.
  */
 async function getClientIP(): Promise<string> {
-    const headersList = await headers();
+    const headersList = await getHeaders();
     const forwarded = headersList.get("x-forwarded-for") ?? headersList.get("x-real-ip") ?? "anonymous";
     return forwarded.split(",")[0]!.trim();
 }
@@ -43,17 +43,16 @@ export async function POST(req: Request) {
 
         // ── 3. Stream AI Response ────────────────────────────
         const result = simplifyText(inputResult.sanitized, mode as SimplificationMode);
-
-        const response = result.toTextStreamResponse();
+        const streamResponse = result.toTextStreamResponse();
 
         // Add rate-limit headers to the streaming response
-        const headers = new Headers(response.headers);
-        headers.set("X-RateLimit-Remaining-Minute", String(rateLimit.remaining.minute));
-        headers.set("X-RateLimit-Remaining-Day", String(rateLimit.remaining.day));
+        const responseHeaders = new Headers(streamResponse.headers);
+        responseHeaders.set("X-RateLimit-Remaining-Minute", String(rateLimit.remaining.minute));
+        responseHeaders.set("X-RateLimit-Remaining-Day", String(rateLimit.remaining.day));
 
-        return new Response(response.body, {
-            status: response.status,
-            headers,
+        return new Response(streamResponse.body, {
+            status: streamResponse.status,
+            headers: responseHeaders,
         });
     } catch (err) {
         console.error("[/api/simplify] Error:", err);

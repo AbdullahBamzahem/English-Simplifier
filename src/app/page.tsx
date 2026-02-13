@@ -22,7 +22,7 @@ export default function Home() {
                 </div>
 
                 {/* ── Main Card ─────────────────────────────── */}
-                <div className="w-full max-w-2xl glass-card p-5 sm:p-7 animate-fade-in">
+                <div className="w-full max-w-5xl glass-card p-5 sm:p-7 animate-fade-in">
                     <SimplifierForm />
                 </div>
 
