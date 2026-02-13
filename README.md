@@ -93,4 +93,15 @@ Set `GEMINI_API_KEY` in your Vercel project's environment variables.
 
 ## License
 
+---
+
+## 📩 Contact & Connect
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abdullah-bamzahem-0009133a3/)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/abdullahbamzahem)
+
+**Bamzahem Digital** - Built for clarity.
+
+Privacy Note: This tool processes data via Google Gemini API and does not store any user-inputted text.
+
 MIT

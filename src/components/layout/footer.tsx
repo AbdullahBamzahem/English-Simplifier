@@ -35,6 +35,12 @@ export default function Footer() {
                         </span>
                     </div>
                 </div>
+                <div className="mt-4 pt-4 border-t border-border/30 text-center">
+                    <p className="text-[11px] text-text-muted/70 leading-relaxed">
+                        <span className="font-medium text-text-muted/90">Privacy &amp; Terms:</span>{" "}
+                        Your text is processed securely via Google Gemini (Third-party AI). We do not store or save your input data in our databases.
+                    </p>
+                </div>
             </div>
         </footer>
     );
