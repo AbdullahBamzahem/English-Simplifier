@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-    title: "English Simplifier — Clear, Concise, Confident",
+    title: "Translate to Simple English — Clear, Concise, Confident",
     description:
         "AI-powered tool that simplifies complex English text. Perfect for job applicants, travelers, and non-native speakers. Powered by Gemini.",
     keywords: [

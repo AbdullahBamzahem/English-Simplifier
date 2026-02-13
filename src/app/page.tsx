@@ -11,7 +11,7 @@ export default function Home() {
                 {/* ── Hero Section ──────────────────────────── */}
                 <div className="text-center mb-8 sm:mb-10 space-y-3 max-w-xl animate-fade-in">
                     <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-                        Simplify your{" "}
+                        Translate to Simple{" "}
                         <span className="gradient-text">English</span>
                     </h2>
                     <p className="text-text-secondary text-sm sm:text-base leading-relaxed">

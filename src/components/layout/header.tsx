@@ -30,7 +30,7 @@ export default function Header() {
                 {/* Status badge */}
                 <div className="flex items-center gap-2 text-xs text-text-muted">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                    Gemini Flash
+                    Google Gemini
                 </div>
             </div>
         </header>

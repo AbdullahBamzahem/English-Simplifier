@@ -147,7 +147,7 @@ export default function SimplifierForm() {
                             name="text"
                             value={text}
                             onChange={(e) => setText(e.target.value)}
-                            placeholder="Paste or type complex English text here..."
+                            placeholder="Paste or type text here (English or any language)..."
                             rows={10}
                             className={`
                                 w-full px-4 py-3 rounded-xl resize-none
@@ -219,7 +219,7 @@ export default function SimplifierForm() {
                             Simplifying...
                         </span>
                     ) : (
-                        "Simplify"
+                        "Translate"
                     )}
                 </button>
 

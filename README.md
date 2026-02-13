@@ -1,4 +1,4 @@
-# English Simplifier
+# Translate to Simple English
 
 AI-powered tool that simplifies complex English text into clear, concise language. Built with Next.js, and Tailwind CSS.
 
