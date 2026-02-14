@@ -21,7 +21,7 @@ export function simplifyText(input: string, mode: SimplificationMode) {
     const result = streamText({
         model: google(MODEL_ID),
         system: systemPrompt,
-        prompt: input,
+        prompt: `"""\n${input}\n"""`,
         temperature: 0.3,
     });
 
