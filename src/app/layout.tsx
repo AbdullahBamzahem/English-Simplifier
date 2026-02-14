@@ -17,7 +17,6 @@ export const metadata: Metadata = {
         "text simplifier",
         "simplify english",
         "plain language",
-        "CEFR",
         "language tool",
     ],
     authors: [{ name: "Translate to Simple English" }],
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Translate to Simple English — corrected, clear, Concise, Confident",
         description:
-            "Simplify complex English into corrected, clear, everyday language. Choose your level: Essential, Daily, or Professional.",
+            "Simplify complex English into corrected, clear, everyday language. Professional-grade simplification powered by AI.",
         type: "website",
     },
 };

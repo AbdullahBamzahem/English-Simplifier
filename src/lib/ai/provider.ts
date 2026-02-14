@@ -1,6 +1,6 @@
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { streamText } from "ai";
-import { SYSTEM_PROMPTS, type SimplificationMode } from "./prompts";
+import { SYSTEM_PROMPT } from "./prompts";
 
 /**
  * AI provider abstraction layer.
@@ -15,12 +15,10 @@ const google = createGoogleGenerativeAI({
 
 const MODEL_ID = "gemini-2.0-flash";
 
-export function simplifyText(input: string, mode: SimplificationMode) {
-    const systemPrompt = SYSTEM_PROMPTS[mode];
-
+export function simplifyText(input: string) {
     const result = streamText({
         model: google(MODEL_ID),
-        system: systemPrompt,
+        system: SYSTEM_PROMPT,
         prompt: `"""\n${input}\n"""`,
         temperature: 0.3,
     });

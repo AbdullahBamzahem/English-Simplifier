@@ -15,7 +15,9 @@ export default function Home() {
                         <span className="gradient-text">English</span>
                     </h2>
                     <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
-                        Paste complex or imperfect text and get a corrected, clear, and concise version instantly. Perfect for English learners, job seekers, and daily communication.
+                        Paste complex or imperfect text and get a corrected, clear, and concise version instantly.
+                         Perfect for English learners, job seekers, and daily communication.
+                          aligned with CEFR levels A1 to B2.
                         {/* <br className="hidden sm:inline" />{" "} */}
 
                     </p>

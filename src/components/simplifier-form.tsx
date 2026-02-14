@@ -1,13 +1,11 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { MODES, type SimplificationMode } from "@/lib/ai/prompts";
 import StreamingResult from "./streaming-result";
 
 const MAX_INPUT_LENGTH = 3000;
 
 export default function SimplifierForm() {
-    const [mode, setMode] = useState<SimplificationMode>("A2-B1");
     const [text, setText] = useState("");
     const [output, setOutput] = useState("");
     const [isStreaming, setIsStreaming] = useState(false);
@@ -36,7 +34,7 @@ export default function SimplifierForm() {
             const res = await fetch("/api/simplify", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ text, mode }),
+                body: JSON.stringify({ text }),
                 signal: controller.signal,
             });
 
@@ -91,37 +89,6 @@ export default function SimplifierForm() {
 
     return (
         <div className="w-full space-y-5">
-            {/* ── Mode Selector ──────────────────────────────── */}
-            <div className="space-y-2.5">
-                <label className="block text-sm font-medium text-text-secondary">
-                    Simplification Level
-                </label>
-                <div className="flex flex-wrap gap-2">
-                    {MODES.map((m) => (
-                        <button
-                            key={m.value}
-                            type="button"
-                            onClick={() => setMode(m.value)}
-                            className={`
-                                group relative px-4 py-2.5 rounded-xl text-sm font-medium
-                                transition-all duration-200 cursor-pointer
-                                ${mode === m.value
-                                    ? "bg-accent/15 text-accent border border-accent/40 shadow-lg shadow-accent/10"
-                                    : "bg-surface-light/50 text-text-secondary border border-border hover:border-border-light hover:text-text-primary"
-                                }
-                            `}
-                        >
-                            <span className="relative z-10">{m.label}</span>
-                            {mode === m.value && (
-                                <div className="absolute inset-0 rounded-xl bg-accent/5 animate-pulse-glow" />
-                            )}
-                        </button>
-                    ))}
-                </div>
-                <p className="text-xs text-text-muted">
-                    {MODES.find((m) => m.value === mode)?.description}
-                </p>
-            </div>
 
             {/* ── Side-by-Side Panels ────────────────────────── */}
             <form onSubmit={handleSubmit} className="space-y-4">

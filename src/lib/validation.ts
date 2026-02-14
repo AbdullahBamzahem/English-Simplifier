@@ -41,8 +41,3 @@ export function validateInput(raw: unknown): ValidationResult {
     return { valid: true, sanitized };
 }
 
-const VALID_MODES = new Set(["A1", "A2-B1", "B2"]);
-
-export function validateMode(mode: unknown): mode is "A1" | "A2-B1" | "B2" {
-    return typeof mode === "string" && VALID_MODES.has(mode);
-}

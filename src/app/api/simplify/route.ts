@@ -1,8 +1,7 @@
 import { headers as getHeaders } from "next/headers";
 import { simplifyText } from "@/lib/ai/provider";
 import { checkRateLimit } from "@/lib/rate-limit";
-import { validateInput, validateMode } from "@/lib/validation";
-import type { SimplificationMode } from "@/lib/ai/prompts";
+import { validateInput } from "@/lib/validation";
 
 /**
  * Extract client IP from request headers.
@@ -17,15 +16,11 @@ export async function POST(req: Request) {
     try {
         // ── 1. Parse & Validate Input ─────────────────────────
         const body = await req.json();
-        const { text, mode } = body;
+        const { text } = body;
 
         const inputResult = validateInput(text);
         if (!inputResult.valid) {
             return Response.json({ error: inputResult.error }, { status: 400 });
-        }
-
-        if (!validateMode(mode)) {
-            return Response.json({ error: "Invalid simplification mode." }, { status: 400 });
         }
 
         // ── 2. Rate Limit ────────────────────────────────────
@@ -42,7 +37,7 @@ export async function POST(req: Request) {
         }
 
         // ── 3. Stream AI Response ────────────────────────────
-        const result = simplifyText(inputResult.sanitized, mode as SimplificationMode);
+        const result = simplifyText(inputResult.sanitized);
         const streamResponse = result.toTextStreamResponse();
 
         // Add rate-limit headers to the streaming response
