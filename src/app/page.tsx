@@ -7,17 +7,17 @@ export default function Home() {
         <>
             <Header />
 
-            <main className="flex-1 flex flex-col items-center justify-start px-4 sm:px-6 py-8 sm:py-12">
+            <main className="flex-1 flex flex-col items-center justify-start px-4 sm:px-6 pt-2 pb-8 sm:pt-3 sm:pb-12">
                 {/* ── Hero Section ──────────────────────────── */}
-                <div className="text-center mb-8 sm:mb-10 space-y-3 max-w-xl animate-fade-in">
+                <div className="text-center mb-4 sm:mb-5 space-y-3 max-w-xl animate-fade-in">
                     <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
                         Translate to Simple{" "}
                         <span className="gradient-text">English</span>
                     </h2>
                     <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
-                        Paste complex text and get a corrected, clear, concise version instantly.
-                        <br className="hidden sm:inline" />{" "}
-                        Perfect for job applications, travel, and daily communication.
+                        Paste complex or imperfect text and get a corrected, clear, and concise version instantly. Perfect for English learners, job seekers, and daily communication.
+                        {/* <br className="hidden sm:inline" />{" "} */}
+
                     </p>
                 </div>
 
@@ -27,9 +27,9 @@ export default function Home() {
                 </div>
 
                 {/* ── Feature Pills ─────────────────────────── */}
-                <div className="flex flex-wrap items-center justify-center gap-3 mt-8 animate-fade-in">
+                {/* <div className="flex flex-wrap items-center justify-center gap-3 mt-8 animate-fade-in">
                     {[
-                        { icon: "⚡", label: "Real-time streaming" },
+                        { icon: "⚡", label: "fast" },
                         { icon: "🔒", label: "Server-side only" },
                         { icon: "🎯", label: "3 CEFR levels" },
                     ].map((feature) => (
@@ -42,7 +42,7 @@ export default function Home() {
                             {feature.label}
                         </span>
                     ))}
-                </div>
+                </div> */}
             </main>
 
             <Footer />

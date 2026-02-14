@@ -2,11 +2,13 @@
 
 AI-powered tool that simplifies complex English text into corrected, clear, concise language. Built with Next.js, and Tailwind CSS.
 
+Specially optimized for English language learners (ESL) to fix "broken English" while preserving the original intent.
+
 ## Who is this for?
 
-- **Job Applicants** — Refine cover letters and professional communication
-- **Travelers** — Simplify phrases for easier daily interactions
-- **Non-Native Speakers** — Understand complex texts quickly
+- **Job Applicants** — Refine cover letters and professional communication.
+- **Travelers** — Simplify phrases for easier daily interactions.
+- **English Learners** — Understand complex texts and fix grammatical mistakes instantly.
 
 ## Simplification Levels
 
@@ -52,29 +54,6 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Project Structure
-
-```
-src/
-├── app/
-│   ├── actions.ts          # Server Action (validate → rate limit → stream)
-│   ├── globals.css          # Tailwind + custom theme + animations
-│   ├── layout.tsx           # Root layout with SEO metadata
-│   └── page.tsx             # Main page composition
-├── components/
-│   ├── layout/
-│   │   ├── header.tsx       # App header with branding
-│   │   └── footer.tsx       # App footer
-│   ├── simplifier-form.tsx  # Input form + mode selector
-│   └── streaming-result.tsx # Real-time output display
-├── lib/
-│   ├── ai/
-│   │   ├── prompts.ts       # System prompts for 3 CEFR levels
-│   │   └── provider.ts      # AI provider abstraction (Gemini)
-│   ├── rate-limit.ts        # Sliding-window rate limiter
-│   └── validation.ts        # Input validation & sanitization
-└── middleware.ts             # Security headers (CSP, HSTS, etc.)
-```
 
 ## Architecture
 
